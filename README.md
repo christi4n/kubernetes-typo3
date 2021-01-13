@@ -2,7 +2,8 @@
 
 ### History
 
-2021-13-01: initial version 1.0.0
+2021-13-01 - 1.0.1: improve documentation
+2021-13-01 - 1.0.0: first repo version
 
 ### What can you expect?
 
