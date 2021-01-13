@@ -1,5 +1,13 @@
 ## Kubernetes cluster with Minikube
 
+### History
+
+2021-13-01: initial version 1.0.0
+
+### How-to
+This repository contains two manifest files in order to create a running TYPO3 CMS instance under Kubernetes.
+You can use [Minikube](https://minikube.sigs.k8s.io/) locally.
+
 You are advised to use Virtualbox as a virtual environment for Minikube.
 To launch Minikube the first time:
 
@@ -36,3 +44,8 @@ kubectl exec --stdin --tty typo3cms -- /bin/bash
 ```
 
 The working dir is /var/www.
+
+### Source code qnd main Docker image
+
+The Docker image used is entirely mine.
+You can check my [GitHub repo](https://github.com/christi4n/docker-multistage).
