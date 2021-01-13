@@ -4,6 +4,12 @@
 
 2021-13-01: initial version 1.0.0
 
+### What can you expect?
+
+You can have a fully functionnal TYPO3 CMS running!
+
+![Backend running](https://raw.githubusercontent.com/christi4n/kubernetes-typo3/master/assets/typo3-running-kubernetes.png)
+
 ### How-to
 This repository contains two manifest files in order to create a running TYPO3 CMS instance under Kubernetes.
 You can use [Minikube](https://minikube.sigs.k8s.io/) locally.
@@ -34,6 +40,7 @@ kubectl apply -f 1-cms-service.yaml --namespace=typo3-playground
 ```
 minikube --namespace=typo3-playground service cmsservice --url
 ```
+![Get endpoint for exposed service](https://raw.githubusercontent.com/christi4n/kubernetes-typo3/master/assets/kubectl-service-endpoint.png)
 
 ### SSH access into the main pod
 
@@ -44,6 +51,25 @@ kubectl exec --stdin --tty typo3cms -- /bin/bash
 ```
 
 The working dir is /var/www.
+
+Here are some screenshots:
+
+Minikube Daskboard:
+
+![Minikube Daskboard](https://raw.githubusercontent.com/christi4n/kubernetes-typo3/master/assets/minikube-dashboard.png)
+
+TYPO3 Install Tool:
+
+![TYPO3 Install Tool](https://raw.githubusercontent.com/christi4n/kubernetes-typo3/master/assets/typo3-install-tool.png)
+
+TYPO3 Install Tool - Update Database schema:
+
+![TYPO3 Install Tool - Update Database schema](https://raw.githubusercontent.com/christi4n/kubernetes-typo3/master/assets/typo3-install-tool-update-database-schema.png)
+
+
+### What's next?
+
+This is just a start. I'll make some effort to improve it from time to time.
 
 ### Source code qnd main Docker image
 
