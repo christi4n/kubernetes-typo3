@@ -1,0 +1,5 @@
+icon: https://raw.githubusercontent.com/christi4n/kubernetes-typo3/master/assets/typo3.png
+deploy:
+  - kubectl create namespace typo3-playground
+  - kubectl apply -f 1-typo3cms-pod.yaml --namespace=typo3-playground
+  - kubectl apply -f 1-cms-service.yaml --namespace=typo3-playground
