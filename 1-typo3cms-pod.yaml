@@ -2,7 +2,6 @@ apiVersion: v1
 kind: Pod
 metadata:
   name: typo3cms
-  namespace: typo3-playground
   labels:
     app: typo3cms
     cms: typo3
@@ -71,4 +70,3 @@ spec:
   volumes:
   - name: data
     emptyDir: {}
-        
