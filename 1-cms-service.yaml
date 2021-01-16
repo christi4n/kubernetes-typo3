@@ -2,12 +2,13 @@ apiVersion: v1
 kind: Service
 metadata:
   name: cmsservice
+  namespace: christi4n
 spec:
   selector:
     app: typo3cms
   type: NodePort
   ports:
-  - nodePort: 31001
-    port: 80
-    targetPort: 80
-    protocol: TCP
+    - nodePort: 31001
+      port: 80
+      targetPort: 80
+      protocol: TCP

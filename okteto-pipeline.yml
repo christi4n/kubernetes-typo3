@@ -1,4 +1,4 @@
 icon: https://raw.githubusercontent.com/christi4n/kubernetes-typo3/master/assets/typo3.png
 deploy:
-  - kubectl apply -f 1-typo3cms-pod.yaml
-  - kubectl apply -f 1-cms-service.yaml
+  - kubectl apply -f 1-typo3cms-pod.yaml --namespace=christi4n
+  - kubectl apply -f 1-cms-service.yaml --namespace=christi4n
