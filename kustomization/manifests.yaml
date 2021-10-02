@@ -1,0 +1,95 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: kubernetes-typo3
+  namespace: kubernetes-typo3-app
+spec:
+  ports:
+  - nodePort: 31001
+    port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: typo3
+  type: NodePort
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: typo3
+  name: kubernetes-typo3
+  namespace: kubernetes-typo3-app
+spec:
+  selector:
+    matchLabels:
+      app: typo3
+  template:
+    metadata:
+      labels:
+        app: typo3
+    spec:
+      containers:
+      - env:
+        - name: TYPO3_DB_HOST
+          value: 127.0.0.1
+        - name: TYPO3_DB_NAME
+          value: typo3
+        - name: TYPO3_DB_USERNAME
+          value: db
+        - name: TYPO3_DB_PASSWORD
+          value: db
+        - name: TYPO3_ADMIN_USERNAME
+          value: christian
+        - name: TYPO3_ADMIN_PASSWORD
+          value: christian
+        - name: WEB_DOCUMENT_ROOT
+          value: /var/www/public
+        - name: WEB_DOCUMENT_INDEX
+          value: index.php
+        - name: TYPO3_CONTEXT
+          value: Development
+        - name: TYPO3_MAIL_TRANSPORT
+          value: smtp
+        - name: TYPO3_SYS_ENCRYPTION_KEY
+          value: 360af65160e3a48109231fec375a9199016118ddd364404ba25b4762ef713dba8887b7b7ac741667648381b962dc657c
+        - name: TYPO3_SYS_TRUSTED_HOSTS_PATTERN
+          value: (.*)
+        - name: TYPO3_SYS_SITE_NAME
+          value: My TYPO3 Website
+        - name: TYPO3_INSTALL_TOOL_PASSWORD
+          value: $argon2i$v=19$m=65536,t=16,p=1$NTAzdkZNd0RhMGVnVUZWUw$MfdyxMT+2d3TTY3J8ccHA91ehoQN8e38w7VzG5mywLM
+        image: docker.io/chrisnt5/php-webdevops:1.0.4
+        imagePullPolicy: Always
+        name: typo3cms
+        ports:
+        - containerPort: 80
+        resources:
+          limits:
+            cpu: "0.5"
+            memory: 512Mi
+          requests:
+            cpu: "0.25"
+      - env:
+        - name: MYSQL_DATABASE
+          value: typo3
+        - name: MYSQL_USER
+          value: db
+        - name: MYSQL_PASSWORD
+          value: db
+        - name: MYSQL_ROOT_PASSWORD
+          value: db
+        image: mysql:5.7
+        name: typo3-db
+        resources:
+          limits:
+            cpu: "0.5"
+            memory: 256Mi
+          requests:
+            cpu: "0.25"
+        volumeMounts:
+        - mountPath: /var/lib/mysql
+          name: data
+      volumes:
+      - emptyDir: {}
+        name: data
