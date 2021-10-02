@@ -67,12 +67,19 @@ TYPO3 Install Tool - Update Database schema:
 
 ![TYPO3 Install Tool - Update Database schema](https://raw.githubusercontent.com/christi4n/kubernetes-typo3/master/assets/typo3-install-tool-update-database-schema.png)
 
+### Kustomization
+    $ kubectl create ns kubernetes-typo3-app
+    $ kustomize build ./manifests > ./kustomization/manifests.yaml
+    $ argocd app create kubernetes-typo3 --repo https://github.com/christi4n/kubernetes-typo3.git  \ 
+    --revision kustomize --path ./kustomization --dest-server https://kubernetes.default.svc  \ 
+    --dest-namespace kubernetes-typo3-app
+    $ argocd app sync kubernetes-typo3
 
 ### What's next?
 
 This is just a start. I'll make some effort to improve it from time to time.
 
-### Source code qnd main Docker image
+### Source code and main Docker image
 
 The Docker image used is entirely mine.
 You can check my [GitHub repo](https://github.com/christi4n/docker-multistage).
