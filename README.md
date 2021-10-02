@@ -75,6 +75,8 @@ TYPO3 Install Tool - Update Database schema:
     --dest-namespace kubernetes-typo3-app
     $ argocd app sync kubernetes-typo3
 
+Last step is to proceed to http://${CLUSTER_URL}:${PORT}/typo3/install.php
+
 ### What's next?
 
 This is just a start. I'll make some effort to improve it from time to time.
