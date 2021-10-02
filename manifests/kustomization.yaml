@@ -1,0 +1,10 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+images:
+- name: docker.io/chrisnt5/php-webdevops
+  newTag: 1.0.4
+
+resources:
+- deployment.yaml
+- service.yaml

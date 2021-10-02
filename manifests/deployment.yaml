@@ -15,7 +15,7 @@ spec:
         app: typo3
     spec:
       containers:
-      - image: docker.io/chrisnt5/php-webdevops:1.0.4
+      - image: docker.io/chrisnt5/php-webdevops:1.0.3
         name: typo3cms
         imagePullPolicy: Always
         resources:
