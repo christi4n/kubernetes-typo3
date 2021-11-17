@@ -52,6 +52,14 @@ Deploy the first release of your application:
 argocd app create kubernetes-typo3 --repo https://github.com/christi4n/kubernetes-typo3.git --revision kustomize --path ./kustomization --dest-server https://kubernetes.default.svc --dest-namespace kubernetes-typo3-app
 ```
 
+### Import the database
+
+This is the old school way, sorry for that
+
+```
+kubectl -n kubernetes-typo3-app exec -i podname -c typo3-db -- mysql -u db -pdb db < /path/to/db/typo3-sample-db.sql 
+```
+
 Sync the app:
 
 ```
