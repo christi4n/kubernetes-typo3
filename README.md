@@ -44,6 +44,20 @@ You can edit the imge you need in the kustomization.yaml file and then, generate
 kustomize build ./manifests > ./kustomization/manifests.yaml
 ```
 
+### Argo CD
+
+Deploy the first release of your application:
+
+```
+argocd app create kubernetes-typo3 --repo https://github.com/christi4n/kubernetes-typo3.git --revision kustomize --path ./kustomization --dest-server https://kubernetes.default.svc --dest-namespace kubernetes-typo3-app
+```
+
+Sync the app:
+
+```
+argocd app sync kubernetes-typo3
+```
+
 TODO: to be completed
 
 The working dir is /var/www.
