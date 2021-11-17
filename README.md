@@ -2,8 +2,10 @@
 
 ### History
 
+2021-11-17 - 1.1.0: use chrisnt5/php-webdevops:2.x.x instead of 1.x.x
+2021-10-02 - 1.0.2: add kustomize for Argo CD deployment
 2021-13-01 - 1.0.1: improve documentation
-2021-13-01 - 1.0.0: first repo version
+2021-13-01 - 1.0.0: first repo version 
 
 ### What can you expect?
 
@@ -26,30 +28,23 @@ minikube start --memory=4096 --driver=virtualbox
 eval $(minikube docker-env)
 ```
 
-### Deploy yaml configuration
+### Deploy with Argo CD
 
-1-typo3cms-pod.yaml: this file is used for the webserver and the CMS. There is also the MySQL database server definition inside this manifest.
-1-cms-service.yaml: service exposed outside to access the TYPO3 CMS.
+This step is not a documentation to explain how to install Argo CD.
 
-```
-kubectl apply -f 1-typo3cms-pod.yaml --namespace=typo3-playground
-kubectl apply -f 1-cms-service.yaml --namespace=typo3-playground
-```
-
-### Get endpoint for exposed service
+First step: access the Argo CD backend. If you use Minikube, you can get the port the Argo CD server is using with:
 
 ```
-minikube --namespace=typo3-playground service cmsservice --url
+kubectl get svc argocd-server -n argocd -o=jsonpath="{$.spec.ports[0].nodePort}{'\n'}"
 ```
-![Get endpoint for exposed service](https://raw.githubusercontent.com/christi4n/kubernetes-typo3/master/assets/kubectl-service-endpoint.png)
 
-### SSH access into the main pod
-
-It is not advised to go inside your containers but if yoy need to (for instance, to create the ENABLE_INSTALL_TOOL in the /var/www/public/typo3conf directory - access with the famous joh316 password), here is how you can do:
+You can edit the imge you need in the kustomization.yaml file and then, generate the manifests.yaml file again with the command below. If you cannot see any change, delete the file, it will be generated again.
 
 ```
-kubectl exec --stdin --tty typo3cms -- /bin/bash
+kustomize build ./manifests > ./kustomization/manifests.yaml
 ```
+
+TODO: to be completed
 
 The working dir is /var/www.
 

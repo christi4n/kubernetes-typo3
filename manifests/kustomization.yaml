@@ -3,7 +3,7 @@ kind: Kustomization
 
 images:
 - name: docker.io/chrisnt5/php-webdevops
-  newTag: 1.0.4
+  newTag: 2.0.3
 
 resources:
 - deployment.yaml
