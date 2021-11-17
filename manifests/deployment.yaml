@@ -65,7 +65,7 @@ spec:
             cpu: "0.25"
         env:
           - name: MYSQL_DATABASE
-            value: typo3
+            value: db
           - name: MYSQL_USER
             value: db
           - name: MYSQL_PASSWORD
