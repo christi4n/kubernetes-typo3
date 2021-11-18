@@ -59,7 +59,7 @@ spec:
           value: My TYPO3 Website
         - name: TYPO3_INSTALL_TOOL_PASSWORD
           value: $argon2i$v=19$m=65536,t=16,p=1$NTAzdkZNd0RhMGVnVUZWUw$MfdyxMT+2d3TTY3J8ccHA91ehoQN8e38w7VzG5mywLM
-        image: docker.io/chrisnt5/php-webdevops:2.0.3
+        image: docker.io/chrisnt5/php-webdevops:2.0.4
         imagePullPolicy: Always
         name: typo3cms
         ports:
